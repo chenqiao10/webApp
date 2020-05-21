@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/JavaScript" src="js/ckeditor/ckeditor.js"></script>
+</head>
+<body onLoad="onLoad()">
+<textarea id="id_sheetTitleContent1" style="width:100px;height: 100px" contenteditable="true" class="edit_paper">12321</textarea>
+<textarea id="id_sheetTitleContent2" style="width:100px;height: 100px" class="edit_paper">123213</textarea>
+<textarea id="id_sheetTitleContent3" style="width:100px;height: 100px" class="edit_paper">21321</textarea>
+</body>
+<script>
+function onLoad(){
+    var toolbar =[['-', 'Bold', 'Italic', 'Underline', 'FontSize', 'lineheight'],['RemoveFormat'], ['SImage'],['PasteText'],['PasteFromWord']['Sourcedialog'],['help']];
+      /*  [['-', 'Bold', 'Italic', 'Underline', 'FontSize', 'lineheight'],['RemoveFormat'], ['SImage'], ['shortline', 'longline', 'tianzige'],['Sourcedialog'],['help']] ;*/
+      /*  [['-', 'Bold', 'Italic', 'Underline', 'FontSize', 'lineheight'],['RemoveFormat'], ['SImage'],['Sourcedialog'],['help']];*/
+    CKEDITOR.inline("id_sheetTitleContent1", {
+        image_previewText: ' ',
+        imageUploadURL: 'sheet/upload-picture?sheetID=',
+        toolbar: toolbar
+    });
+    CKEDITOR.inline("id_sheetTitleContent2", {
+        image_previewText: ' ',
+        imageUploadURL: 'sheet/upload-picture?sheetID=',
+        toolbar: toolbar
+    });
+};
+</script>
+</html>

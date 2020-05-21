@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/JavaScript" src="js/kindeditor/4.1.10/kindeditor.js"></script>
+</head>
+<body onload="onload()">
+<textarea id="id_sheetTitleContent1" style="width:100px;height: 100px" class="edit_paper">12321</textarea>
+<div id="id_sheetTitleContent2" style="width:100px;height: 100px" class="edit_paper"></div>
+<div id="id_sheetTitleContent3" style="width:100px;height: 100px ;" class="edit_paper"></div>
+</body>
+<script type="text/JavaScript">
+function onload(){
+    console.log(111);
+    var currentEditor = null ,imgAreaSelect= null,$examPaper=null,$tool=null,$editFlag =false ,$imgBox = null,$editBeforText = "",beforeChangeW=0,beforeChangeH=0;
+
+    kedit('.edit_paper');
+    function kedit(kedit){
+        var editor = KindEditor.create(kedit, {
+            width:"99%",
+            minHeight:80,
+            resizeType : 1,
+            uploadJson : "${base}/paper/upload-picture?paperID=${paperID}&upType=paper&dataID=${dataID}&subjectID=${subjectID}&examType=${type}",
+            items : [
+                'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+                'justifyfull',  'subscript',
+                'superscript',
+                 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+                'italic', 'underline', 'strikethrough', 'lineheight', '|', 'hr', 'image'
+         ],
+            afterCreate : function() {
+            this.loadPlugin('autoheight');
+        },
+        autoHeightMode : true,
+            afterFocus : function() {
+            set(this);
+            if(!$editFlag){
+                $editBeforText=currentEditor.html();
+            }
+        },
+        afterBlur:function(){
+            if(!$editFlag&&$editBeforText!=currentEditor.html()){
+                $editFlag = true;
+            }
+
+        },
+            afterFocus : function() {
+            currentEditor=this;
+            if(!$editFlag){
+                $editBeforText=currentEditor.html();
+            }
+        },
+        afterBlur:function(){
+            if(!$editFlag&&$editBeforText!=currentEditor.html()){
+                $editFlag = true;
+            }
+            currentEditor=null;
+        }
+
+    });
+        var KEs = KindEditor.instances;
+        for(var i=0;i<KEs.length;i++){
+            KEs[i]["tipNum"]=i;
+        }
+
+    }
+};
+</script>
+</html>
